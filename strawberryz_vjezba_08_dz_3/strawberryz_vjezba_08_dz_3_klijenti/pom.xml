@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+    <artifactId>strawberryz_vjezba_08_dz_3</artifactId>
+    <groupId>edu.unizg.foi.nwtis.strawberryz</groupId>
+    <version>1.0.0</version>
+  </parent>
+
+    <groupId>edu.unizg.foi.nwtis.strawberryz</groupId>
+    <artifactId>strawberryz_vjezba_08_dz_3_klijenti</artifactId>
+    <version>1.0.0</version>
+    <packaging>war</packaging>
+
+    <name>strawberryz_vjezba_08_dz_3_klijenti</name>
+
+   
+	<properties>
+
+		<resteasy-client.version>7.0.2.Final</resteasy-client.version>
+		<payara.version>7.2026.4</payara.version>
+        <jakartaee-api.version>11.0.0</jakartaee-api.version>
+        <krazo.version>4.0.1</krazo.version>
+        <jakarta.mvc-api.version>3.0.0</jakarta.mvc-api.version>
+        <junit-jupiter.version>6.0.3</junit-jupiter.version>
+
+		<servlet.port>8080</servlet.port>
+		<ServerEE.adminPort>4848</ServerEE.adminPort>
+		<ServerEE.username>admin</ServerEE.username>
+		<ServerEE.password></ServerEE.password>
+		<ServerEE.hostname>localhost</ServerEE.hostname>
+		<ServerEE.domainName>domain1</ServerEE.domainName>
+
+		<ServerEE.payara.home>/opt/payara_full/</ServerEE.payara.home>
+		<ServerEE.payara.Web.home>/opt/payara_web/</ServerEE.payara.Web.home>
+		<ServerEE.payara.containerName>payara</ServerEE.payara.containerName>
+
+		<ServerEE.home>${ServerEE.payara.home}</ServerEE.home>
+		<ServerEE.domainDir>${ServerEE.home}/glassfish/domains</ServerEE.domainDir>
+		<ServerEE.containerName>${ServerEE.payara.containerName}</ServerEE.containerName>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.glassfish.jersey</groupId>
+				<artifactId>jersey-bom</artifactId>
+				<version>4.0.2</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+		</dependencies>
+
+
+	</dependencyManagement>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>jakarta.platform</groupId>
+			<artifactId>jakarta.jakartaee-api</artifactId>
+            <version>${jakartaee-api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.mvc</groupId>
+			<artifactId>jakarta.mvc-api</artifactId>
+            <version>${jakarta.mvc-api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.krazo</groupId>
+			<artifactId>krazo-core</artifactId>
+            <version>${krazo.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.krazo</groupId>
+			<artifactId>krazo-jersey</artifactId>
+			<version>${krazo.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>edu.unizg.foi.nwtis.strawberryz</groupId>
+			<artifactId>strawberryz_vjezba_08_dz_3_podaci</artifactId>
+			<version>1.4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>edu.unizg.foi.nwtis.strawberryz</groupId>
+			<artifactId>strawberryz_vjezba_08_dz_3_jpa</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.microprofile</groupId>
+			<artifactId>microprofile</artifactId>
+			<version>6.1</version>
+			<scope>provided</scope>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>${junit-jupiter.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-params</artifactId>
+			<version>${junit-jupiter.version}</version>
+			<scope>test</scope>
+		</dependency>
+			
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.13.0</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.4.0</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.codehaus.cargo</groupId>
+					<artifactId>cargo-maven3-plugin</artifactId>
+					<version>1.10.27</version>
+					<configuration>
+						<skip>${skipTests}</skip>
+						<container>
+							<containerId>${ServerEE.containerName}</containerId>
+						</container>
+						<configuration>
+							<properties>
+								<cargo.remote.username>${ServerEE.username}</cargo.remote.username>
+								<cargo.remote.password>${ServerEE.password}</cargo.remote.password>
+								<cargo.glassfish.admin.port>
+									${ServerEE.adminPort}</cargo.glassfish.admin.port>
+								<cargo.hostname>${ServerEE.hostname}</cargo.hostname>
+							</properties>
+						</configuration>
+					</configuration>
+					<executions>
+						<execution>
+							<id>start-ServerEE</id>
+							<goals>
+								<goal>start</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>deploy</id>
+							<goals>
+								<goal>redeploy</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>undeploy</id>
+							<goals>
+								<goal>undeploy</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>stop-ServerEE</id>
+							<goals>
+								<goal>stop</goal>
+							</goals>
+
+						</execution>
+					</executions>
+
+					<dependencies>
+						<dependency>
+							<groupId>org.glassfish.main.deployment</groupId>
+							<artifactId>deployment-client</artifactId>
+							<version>5.1.0</version>
+						</dependency>
+						<dependency>
+							<groupId>jakarta.xml.bind</groupId>
+							<artifactId>jakarta.xml.bind-api</artifactId>
+							<version>4.0.5</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>ServerEE-local</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.cargo</groupId>
+						<artifactId>cargo-maven3-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>start-ServerEE</id>
+								<phase>pre-integration-test</phase>
+							</execution>
+							<execution>
+								<id>deploy</id>
+								<phase>pre-integration-test</phase>
+							</execution>
+							<execution>
+								<id>undeploy</id>
+								<phase>post-integration-test</phase>
+							</execution>
+							<execution>
+								<id>stop-ServerEE</id>
+								<phase>post-integration-test</phase>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.codehaus.cargo</groupId>
+							<artifactId>cargo-maven3-plugin</artifactId>
+							<configuration>
+								<container>
+									<type>installed</type>
+									<home>${ServerEE.home}</home>
+								</container>
+								<configuration>
+									<type>existing</type>
+									<home>${ServerEE.domainDir}</home>
+									<properties>
+										<cargo.glassfish.domain.name>
+											${ServerEE.domainName}</cargo.glassfish.domain.name>
+									</properties>
+								</configuration>
+							</configuration>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+		</profile>
+	</profiles>
+
+
+</project>

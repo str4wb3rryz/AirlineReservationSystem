@@ -1,0 +1,53 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>edu.unizg.foi.nwtis.strawberryz</groupId>
+    <artifactId>strawberryz_vjezba_08_dz_3</artifactId>
+    <version>1.0.0</version>
+  </parent>
+  <artifactId>strawberryz_vjezba_08_dz_3_jpa</artifactId>
+  <name>strawberryz_vjezba_08_dz_3_jpa</name>
+  <version>1.0.0</version>
+  
+  	<dependencies>
+		<dependency>
+			<groupId>jakarta.platform</groupId>
+			<artifactId>jakarta.jakartaee-web-api</artifactId>
+			<version>10.0.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
+			<version>4.0.2</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>edu.unizg.foi.nwtis.strawberryz</groupId>
+			<artifactId>strawberryz_vjezba_08_dz_3_podaci</artifactId>
+			<version>1.4.0</version>
+		</dependency>				
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.12.1</version>
+				<configuration>
+					<showDeprecation>true</showDeprecation>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.eclipse.persistence</groupId>
+							<artifactId>
+								org.eclipse.persistence.jpa.modelgen.processor</artifactId>
+							<version>4.0.2</version>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+  
+</project>

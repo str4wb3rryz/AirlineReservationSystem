@@ -1,0 +1,176 @@
+/*
+ * javni.css – osnovni (javni) izgled koji se primjenjuje na SVE .jsp poglede.
+ * Boje su definirane kao varijable; pojedini dijelovi aplikacije (privatni,
+ * aviotvrtke, admin) samo redefiniraju ove varijable u svojim .css datotekama,
+ * dok dimenzije i raspored ostaju isti -> konzistentan izgled svuda.
+ */
+:root {
+    --primary: #2994B2;
+    --secondary: #FFB400;
+    --background: #FFFBE0;
+
+    --povrsina: #ffffff;
+    --tekst: #1f2a30;
+    --rub: rgba(0, 0, 0, 0.15);
+    --razmak: 16px;
+    --radius: 8px;
+    --sirina: 1100px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--background);
+    color: var(--tekst);
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0 auto;
+    padding: 0 var(--razmak) 40px;
+    max-width: var(--sirina);
+}
+
+/* ---------- naslovi i tekst ---------- */
+h1, h2, h3 {
+    color: var(--primary);
+    font-weight: 600;
+    margin: var(--razmak) 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 3px solid var(--secondary);
+}
+h1 { font-size: 1.8rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.2rem; }
+
+p { margin: 12px 0; }
+
+strong { color: var(--primary); }
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+a:hover {
+    color: var(--secondary);
+    text-decoration: underline;
+}
+
+/* ---------- traka s prijavljenim korisnikom ---------- */
+.korisnik-traka {
+    display: inline-block;
+    background: var(--primary);
+    color: var(--background);
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: var(--radius);
+    margin: 12px 0;
+}
+.korisnik-traka strong {
+    color: var(--secondary);
+}
+
+/* ---------- tablice ---------- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--razmak) 0;
+    background: var(--povrsina);
+    border: 1px solid var(--rub);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+th, td {
+    padding: 10px 12px;
+    border: 1px solid var(--rub);
+    text-align: left;
+    vertical-align: middle;
+}
+th {
+    background: var(--primary);
+    color: var(--background);
+    font-weight: 600;
+    text-align: center;
+}
+tbody tr:nth-child(even) {
+    background: rgba(0, 0, 0, 0.04);
+}
+tbody tr:hover {
+    background: rgba(255, 180, 0, 0.18);
+}
+.desno {
+    text-align: right;
+}
+
+/* ---------- obrasci (input, select, gumbi) ---------- */
+input, select {
+    font-size: 1rem;
+    padding: 8px 10px;
+    margin: 4px 6px 4px 0;
+    border: 1px solid var(--primary);
+    border-radius: var(--radius);
+    background: var(--povrsina);
+    color: var(--tekst);
+    vertical-align: middle;
+}
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 3px rgba(255, 180, 0, 0.35);
+}
+
+button, input[type="submit"] {
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    margin: 4px 0;
+    border: none;
+    border-radius: var(--radius);
+    background: var(--secondary);
+    color: var(--primary);
+    cursor: pointer;
+    vertical-align: middle;
+}
+button:hover, input[type="submit"]:hover {
+    filter: brightness(0.92);
+}
+
+form.inline {
+    display: inline;
+    margin: 0;
+}
+
+/* ---------- navigacijske liste poveznica ---------- */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: var(--razmak) 0;
+}
+ul li {
+    margin: 6px 0;
+}
+/* ugniježđene liste (npr. zastupnici u tablici) ostaju kompaktne */
+td ul {
+    margin: 0;
+}
+
+/* ---------- statusi sjedala / rezervacija ---------- */
+.legenda span {
+    display: inline-block;
+    padding: 4px 10px;
+    margin: 2px 6px 2px 0;
+    border-radius: var(--radius);
+}
+.SLOBODNA  { background-color: #4caf50; color: #000; }
+.KREIRANA  { background-color: #ffeb3b; color: #000; }
+.POTVRDENA { background-color: #2196f3; color: #fff; }
+.ZATVORENA { background-color: #f44336; color: #fff; }
+.NEVAZECA  { background-color: #000000; color: #fff; }
+
+/* poruke (greške / obavijesti) */
+.korisniciPoruke {
+    color: #b00020;
+    font-weight: 600;
+}

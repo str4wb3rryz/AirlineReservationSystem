@@ -1,0 +1,26 @@
+/*
+ * admin.css – primjenjuje se na poglede u WEB-INF/views/admin/.
+ * Učitava se NAKON javni.css i samo redefinira paletu boja te dodaje
+ * nekoliko naglasaka; sve dimenzije/raspored naslijeđeni su iz javni.css.
+ */
+:root {
+    --primary: #303841;
+    --secondary: #76ABAE;
+    --background: #F5F5F5;
+}
+
+/* naglasak ovog dijela aplikacije */
+h1, h2, h3 {
+    border-bottom-color: var(--secondary);
+}
+.korisnik-traka {
+    background: var(--secondary);
+    color: #ffffff;
+}
+button, input[type="submit"] {
+    background: var(--secondary);
+    color: var(--primary);
+}
+tbody tr:hover {
+    background: rgba(118, 171, 174, 0.22);
+}

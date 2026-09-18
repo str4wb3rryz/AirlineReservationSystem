@@ -1,0 +1,25 @@
+/*
+ * privatni.css – primjenjuje se na poglede u WEB-INF/views/rezervacije/.
+ * Učitava se NAKON javni.css i samo redefinira paletu boja te dodaje
+ * nekoliko naglasaka; sve dimenzije/raspored naslijeđeni su iz javni.css.
+ */
+:root {
+    --primary: #283644;
+    --secondary: #4D727E;
+    --background: #FBE0D8;
+}
+
+/* naglasak ovog dijela aplikacije */
+h1, h2, h3 {
+    border-bottom-color: var(--secondary);
+}
+.korisnik-traka {
+    background: var(--secondary);
+}
+button, input[type="submit"] {
+    background: var(--secondary);
+    color: #ffffff;
+}
+tbody tr:hover {
+    background: rgba(77, 114, 126, 0.18);
+}
