@@ -1,0 +1,41 @@
+<server description="Sample Liberty server">
+    <featureManager>
+        <feature>adminCenter-1.0</feature>
+        <platform>jakartaee-10.0</platform>
+        <platform>microprofile-7.1</platform>
+        <feature>restfulWS</feature>
+        <feature>jsonp</feature>
+        <feature>jsonb</feature>
+        <feature>cdi</feature>
+        <feature>mpHealth</feature>
+        <feature>mpConfig</feature>
+        <feature>mpMetrics</feature>
+    </featureManager>
+
+    <variable name="http.port" defaultValue="8080"/>
+    <variable name="https.port" defaultValue="8443"/>
+    
+    <!-- Postavljanje korisnika i lozinke -->
+    <quickStartSecurity userName="admin" userPassword="123456" />    
+
+    <webApplication location="guide-getting-started.war" contextRoot="/" />
+    
+    <mpMetrics authentication="false"/>
+
+    <logging traceSpecification="com.ibm.ws.microprofile.health.*=all" />
+
+    <httpEndpoint host="*" httpPort="${http.port}"
+        httpsPort="${https.port}" id="defaultHttpEndpoint"/>
+
+    <variable name="io_openliberty_guides_system_inMaintenance" value="false"/>
+    
+    <!-- Automatically expand WAR files and EAR files -->
+    <applicationManager autoExpand="true"/>
+
+    <!-- Configures the application on a specified context root -->
+    <webApplication contextRoot="/" location="app.war" />
+
+    <!-- Default SSL configuration enables trust for default certificates from the Java runtime -->
+    <ssl id="defaultSSLConfig" trustDefaultCerts="true" />
+    
+</server>
