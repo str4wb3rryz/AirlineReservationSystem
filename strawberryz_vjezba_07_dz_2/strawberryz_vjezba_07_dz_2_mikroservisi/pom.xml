@@ -1,0 +1,136 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>edu.unizg.foi.nwtis.strawberryz</groupId>
+    <artifactId>strawberryz_vjezba_07_dz_2</artifactId>
+    <version>1.0.0</version>
+  </parent>
+  <artifactId>strawberryz_vjezba_07_dz_2_mikroservisi</artifactId>
+  <name>strawberryz_vjezba_07_dz_2_mikroservisi</name>
+<packaging>war</packaging>
+
+<properties>
+		<jakartaee-api.version>10.0.0</jakartaee-api.version>
+		<resteasy-client.version>7.0.2.Final</resteasy-client.version>
+		<payara.version>7.2026.4</payara.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>fish.payara.api</groupId>
+				<artifactId>payara-bom</artifactId>
+				<version>${payara.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<dependencies>
+		<dependency>
+			<groupId>jakarta.platform</groupId>
+			<artifactId>jakarta.jakartaee-core-api</artifactId>
+			<version>${jakartaee-api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.microprofile</groupId>
+			<artifactId>microprofile</artifactId>
+			<scope>provided</scope>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>fish.payara.api</groupId>
+			<artifactId>payara-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-client</artifactId>
+			<version>${resteasy-client.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-json-binding-provider</artifactId>
+			<version>${resteasy-client.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>jakarta.json</artifactId>
+			<version>2.0.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>edu.unizg.foi.nwtis.strawberryz</groupId>
+			<artifactId>strawberryz_vjezba_07_dz_2_podaci</artifactId>
+			<version>1.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>edu.unizg.foi.nwtis.strawberryz</groupId>
+			<artifactId>strawberryz_vjezba_07_dz_2_dao</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>2.7.4</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.13.0</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.4.0</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+			<!-- Execute 'mvn clean package payara-micro:dev' to run the
+			application. -->
+			<plugin>
+				<groupId>fish.payara.maven.plugins</groupId>
+				<artifactId>payara-micro-maven-plugin</artifactId>
+				<version>2.5.2</version>
+				<configuration>
+					<payaraMicroVersion>${payara.version}</payaraMicroVersion>
+					<deployWar>true</deployWar>
+					<commandLineOptions>
+						<option>
+							<key>--autoBindHttp</key>
+						</option>
+					</commandLineOptions>
+					<contextRoot>/</contextRoot>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>payara-nexus-artifacts</id>
+			<url>https://nexus.dev.payara.fish/repository/payara-artifacts</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+
+	<profiles>
+	</profiles>
+
+
+</project>

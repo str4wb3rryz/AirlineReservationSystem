@@ -1,0 +1,11 @@
+FROM icr.io/appcafe/open-liberty:kernel-slim-java25-openj9-ubi-minimal
+
+COPY --chown=1001:0 src/main/liberty/config /config
+
+RUN features.sh
+
+COPY --chown=1001:0 target/strawberryz_vjezba_07_dz_2_mikroservisi-1.0.0.war config/apps/app.war
+
+EXPOSE 8080
+
+RUN configure.sh

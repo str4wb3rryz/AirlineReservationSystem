@@ -1,0 +1,8 @@
+korisnickoImeBazaPodataka=nwtis_4
+lozinkaBazaPodataka=nwtis#4
+upravljacBazaPodataka=org.hsqldb.jdbcDriver
+urlBazaPodataka=jdbc:hsqldb:hsql://20.24.5.6:9001/nwtis_4
+urlServis=http://20.24.5.5:8080/
+
+mikroservisi.adresa=20.24.5.8
+mikroservisi.mreznaVrata=8080

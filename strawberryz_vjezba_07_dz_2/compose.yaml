@@ -1,0 +1,100 @@
+name: strawberryz_docker_compose
+
+networks:
+   mreza:
+    name: strawberryz_mreza
+    external: true
+          
+volumes:
+   svezak:
+      name: strawberryz_svezak
+      external: true
+      
+services:
+   kontrola:
+      image: strawberryz_kontrola:latest
+      container_name: strawberryz_kontrola
+      build:
+         context: strawberryz_vjezba_07_dz_2_kontrola 
+      volumes:
+      -  type: volume
+         source: svezak
+         target: /usr/app/podaci
+         volume:
+            nocopy: true
+      networks:
+        mreza:
+          ipv4_address: 20.24.5.2
+          
+   rezervacije:
+         image: strawberryz_rezervacije:latest
+         container_name: strawberryz_rezervacije
+         build:
+            context: strawberryz_vjezba_07_dz_2_rezervacije 
+         volumes:
+         -  type: volume
+            source: svezak
+            target: /usr/app/podaci
+            volume:
+               nocopy: true
+         networks:
+           mreza:
+             ipv4_address: 20.24.5.3
+         depends_on:
+         - kontrola
+             
+   rezervacije_2:
+         image: strawberryz_rezervacije:latest
+         container_name: strawberryz_rezervacije_2
+         build:
+            context: strawberryz_vjezba_07_dz_2_rezervacije 
+         volumes:
+         -  type: volume
+            source: svezak
+            target: /usr/app/podaci
+            volume:
+               nocopy: true
+         networks:
+           mreza:
+             ipv4_address: 20.24.5.4
+         depends_on:
+         - kontrola
+
+   servisi:
+      image: strawberryz_servisi:latest
+      container_name: strawberryz_servisi
+      build:
+         context: strawberryz_vjezba_07_dz_2_servisi 
+      volumes:
+      -  type: volume
+         source: svezak
+         target: /usr/app/podaci
+         volume:
+            nocopy: true
+      networks:
+        mreza:
+          ipv4_address: 20.24.5.5
+      depends_on:
+      - kontrola
+      - rezervacije
+      - rezervacije_2
+
+   mikroservisi:
+      image: strawberryz_mikroservisi:latest
+      container_name: strawberryz_mikroservisi
+      build:
+         context: strawberryz_vjezba_07_dz_2_mikroservisi 
+      volumes:
+      -  type: volume
+         source: svezak
+         target: /usr/app/podaci
+         volume:
+            nocopy: true
+      networks:
+        mreza:
+          ipv4_address: 20.24.5.8
+      depends_on:
+      - servisi
+    
+
+   

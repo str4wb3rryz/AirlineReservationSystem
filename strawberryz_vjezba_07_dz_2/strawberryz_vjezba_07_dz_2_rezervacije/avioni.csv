@@ -1,0 +1,6 @@
+id, Datoteka, Naziv, specifikacije
+A220-300, A220-300.csv, Airbus A 220-300, "Engines: 2, Maximum cruising speed: 871 km/h, Maximum cruising altitude: 12500 m, Permissible takeoff weight: 62 t, Overall length: 38.70 m, Wingspan: 35.00 m"
+A319-100, A319-100.csv, Airbus A 319-100, "Engines: 2, Maximum cruising speed: 834 km/h, Maximum cruising altitude: 11920 m, Permissible takeoff weight: 64 t, Overall length: 33.84 m, Wingspan: 35.80 m"
+A350-900, A350-900.csv, Airbus A350-900, ""
+A380-800, A380-800.csv, Airbus A380-800, ""
+DH8D, Dash8-Q400.csv, De Havilland Canada Dash 8-400, "Length: 32 m, Height: 8 m, Wing span: 28 m, Number of engines: 2, Maximum take off weight: 30 t"
