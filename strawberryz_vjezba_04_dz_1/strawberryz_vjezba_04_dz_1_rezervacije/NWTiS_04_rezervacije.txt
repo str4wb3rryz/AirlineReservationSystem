@@ -1,0 +1,15 @@
+mreznaVrata=8010
+mreznaVrataAvioTvrtke=8011
+mreznaVrataAdministracija=8012
+adresaKontrola=localhost
+mreznaVrataKontrola=8000
+datoteka_avioTvrtke=aviotvrtke.csv
+datoteka_avioni=avioni.csv
+datoteka_letovi=letovi.csv
+datumOd=2026-03-30
+datumDo=2026-04-30
+kodZaKraj=20260329.2
+pauzaDretve=1000
+maksBrojDretvi=10
+maksBrojCekaca=20
+odredivanjeSjedala=edu.unizg.foi.nwtis.strawberryz.vjezba_04_dz_1.PopuniRavnomjernoOdPocetka

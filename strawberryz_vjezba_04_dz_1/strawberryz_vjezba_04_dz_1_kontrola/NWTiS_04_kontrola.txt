@@ -1,0 +1,7 @@
+mreznaVrata=8000
+mreznaVrataAdministracija=8001
+trajanjeUlaznice=5000
+kodZaKraj=20260329.1
+pauzaDretve=1
+maksBrojDretvi=1
+maksBrojCekaca=1
